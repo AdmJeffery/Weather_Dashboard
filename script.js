@@ -61,10 +61,10 @@ function getCurrent (city) {
                 if (uvInfo < 3){
                     bgcolor = "green";
                 }
-                else if (uvInfo >= 3 || uvInfo <= 6){
+                else if (uvInfo >= 3 && uvInfo <= 6){
                     bgcolor = "yellow";
                 }
-                else if (uvInfo >= 6 || uvInfo <= 8){
+                else if (uvInfo >= 6 && uvInfo <= 8){
                     bgcolor = "orange";
                 }
                 else {
@@ -76,11 +76,11 @@ function getCurrent (city) {
                 infoBody.append(uvDisp);
             })
             cardRow.append(textDiv);
-            getForecast(response.name)
+            getForecast(response.id);
     })
 }
 
-function getForcast(city){
+function getForecast(city){
     let queryURL = "https://api.openweathermap.org/data/2.5/forecast?id=" + city + "&appid=" + apiKey;
 
     $.ajax({
@@ -88,6 +88,11 @@ function getForcast(city){
         method : "GET"
     }).then(function(response){
         console.log (response);
+        //make new row for 5 day forecast cards.
+       // let fiveDayRow = $("<div>").attr("class", "fiveDayForecast");
+       // $("#cityForecast").append(fiveDayRow);
+
+       // for (i=0; i<response.list.length,)
     })
 }
 
