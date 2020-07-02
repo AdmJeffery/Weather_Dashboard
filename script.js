@@ -28,10 +28,10 @@ function getCurrent (city) {
         //cardRow.append(todayPic);
 
         //Begin making current weather card
-        let weatherInfo = $("<div>").attr("class","col-md-8");
+        let textDiv = $("<div>").attr("class","col-md-8");
         let infoBody = $("<div>").attr("class", "card-body")
-            weatherInfo.append(infoBody);
-            cardRow.append(weatherInfo);
+            textDiv.append(infoBody);
+            cardRow.append(textDiv);
 
             infoBody.append($("<h3>").attr("class", "card-title").text(response.name))
 
@@ -42,16 +42,45 @@ function getCurrent (city) {
             console.log(temp)
 
         let tempFah = Math.floor((temp-273.15) * 9/5 + 32);
+            console.log(tempFah);
+
         infoBody.append($("<p>").attr("class", "card-text").html("Temperature: " +tempFah))
 
         infoBody.append($("<p>").attr("class", "card-text").text("Humidity: " + response.main.humidity))
 
         infoBody.append($("<p>").attr("class", "card-text").text("Wind Speed: " +response.wind.speed))
 
-        let uvInfo = "https://api.openweathermap.org/data/2.5/uvi?appid=" + apiKey + "=" + response.coord.lat
-        $.ajax
+        let uvURL = "https://api.openweathermap.org/data/2.5/uvi?appid=" + apiKey + "&lat=" + response.coord.lat + "&lon=" + response.coord.lon;
+        $.ajax({
+            url: uvURL,
+            method : "GET"
+            }).then(function (uvresponse){
+                let uvInfo = uvresponse.value;
+                let bgcolor;
+
+                if (uvInfo < 3){
+                    bgcolor = "green";
+                }
+                else if (uvInfo >= 3 || uvInfo <= 6){
+                    bgcolor = "yellow";
+                }
+                else if (uvInfo >= 6 || uvInfo <= 8){
+                    bgcolor = "orange";
+                }
+                else {
+                    bgcolor = "red"
+                }
+
+                let uvDisp = $("<p>").attr("class", "card-text").text("UV Index:");
+                uvDisp.append($("<span>").attr("class","uvIndex").attr("style","background-color:" + bgcolor).text(uvInfo))
+                infoBody.append(uvDisp);
+            })
+            cardRow.append(textDiv);
+            get
     })
 }
+
+
 
 $("#searchBtn").on("click", function () {
     let cityName = $("#searchInput").val().trim();
