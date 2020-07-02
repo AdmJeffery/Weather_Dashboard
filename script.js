@@ -27,20 +27,35 @@ function getCurrent (city) {
         //let todayPic = $("<div>").attr("class", "col-md-4").append($("<img>").attr("src",picURL).attr("class","card-img"));
         //cardRow.append(todayPic);
 
+        //Begin making current weather card
         let weatherInfo = $("<div>").attr("class","col-md-8");
         let infoBody = $("<div>").attr("class", "card-body")
-        weatherInfo.append(infoBody);
-        cardRow.append(weatherInfo);
+            weatherInfo.append(infoBody);
+            cardRow.append(weatherInfo);
 
-        infoBody.append($("<h3>").attr("class", "card-title").text(response.name))
+            infoBody.append($("<h3>").attr("class", "card-title").text(response.name))
 
         let dateToday= moment(response.dt, "X").format("MMMM Do YYYY h:mm a");
-        infoBody.append("<p>").attr
+            infoBody.append($("<p>").attr("class", "card-text").append($("<small>").attr("class", "text-muted").text(dateToday)))
+
+        let temp = Number(response.main.temp)
+            console.log(temp)
+
+        let tempFah = Math.floor((temp-273.15) * 9/5 + 32);
+        infoBody.append($("<p>").attr("class", "card-text").html("Temperature: " +tempFah))
+
+        infoBody.append($("<p>").attr("class", "card-text").text("Humidity: " + response.main.humidity))
+
+        infoBody.append($("<p>").attr("class", "card-text").text("Wind Speed: " +response.wind.speed))
+
+        let uvInfo = "https://api.openweathermap.org/data/2.5/uvi?appid=" + apiKey + "=" + response.coord.lat
+        $.ajax
     })
 }
 
-
 $("#searchBtn").on("click", function () {
     let cityName = $("#searchInput").val().trim();
+
     getCurrent(cityName);
+    
 })
