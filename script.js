@@ -89,10 +89,22 @@ function getForecast(city){
     }).then(function(response){
         console.log (response);
         //make new row for 5 day forecast cards.
-       // let fiveDayRow = $("<div>").attr("class", "fiveDayForecast");
-       // $("#cityForecast").append(fiveDayRow);
+        let fiveDayRow = $("<div>").attr("class", "fiveDayForecast");
+        $("#cityForecast").append(fiveDayRow);
 
-       // for (i=0; i<response.list.length,)
+        for (i=0; i<response.list.length; i++) {
+            if (response.list[i].dt_txt.indexOf("12:00:00") !== -1){
+
+                let column = $("<div>").attr("class", "one-fifth");
+                fiveDayRow.append(column);
+
+                let dayCard = $("<div>").attr("class", "card text-white bg-primary");
+                column.append(dayCard);
+
+                let header = $("<div>").attr("class", "card-header").text(moment(response.list[i].dt, "X").format("MMM Do"));
+                dayCard.append(header);
+            }
+        }
     })
 }
 
