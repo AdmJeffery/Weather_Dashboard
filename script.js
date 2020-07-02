@@ -22,10 +22,10 @@ function getCurrent (city) {
         let cardRow = $("<div>").attr("class", "row no-gutters");
         todayCard.append(cardRow);
 
-        //let picURL = "http://openweather.org/img/wn/" + response.weather[0].icon + "@2x.png";
+        let picURL = "http://openweathermap.org/img/wn/" + response.weather[0].icon + "@2x.png";
 
-        //let todayPic = $("<div>").attr("class", "col-md-4").append($("<img>").attr("src",picURL).attr("class","card-img"));
-        //cardRow.append(todayPic);
+        let todayPic = $("<div>").attr("class", "col-md-4").append($("<img>").attr("src",picURL).attr("class","card-img"));
+        cardRow.append(todayPic);
 
         //Begin making current weather card
         let textDiv = $("<div>").attr("class","col-md-8");
@@ -103,6 +103,11 @@ function getForecast(city){
 
                 let header = $("<div>").attr("class", "card-header").text(moment(response.list[i].dt, "X").format("MMM Do"));
                 dayCard.append(header);
+
+                let icon = $("<img>").attr("class", "card-img-top").attr("src", "http://openweathermap.org/img/wn/" + response.list[i].weather[0].icon + "@2x.png" );
+                dayCard.append(icon);
+
+
             }
         }
     })
