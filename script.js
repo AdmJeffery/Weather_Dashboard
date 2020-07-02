@@ -22,11 +22,20 @@ function getCurrent (city) {
         let cardRow = $("<div>").attr("class", "row no-gutters");
         todayCard.append(cardRow);
 
-        let picURL = "http://openweather.org/img/wn/" + response.weather[0].icon + "@2x.png";
+        //let picURL = "http://openweather.org/img/wn/" + response.weather[0].icon + "@2x.png";
 
-        let todayPic = $("<div>").attr("class", "col-md-4").append($("<img>").attr("src",picURL).attr("class","card-img"));
-        cardRow.append(todayPic);
+        //let todayPic = $("<div>").attr("class", "col-md-4").append($("<img>").attr("src",picURL).attr("class","card-img"));
+        //cardRow.append(todayPic);
 
+        let weatherInfo = $("<div>").attr("class","col-md-8");
+        let infoBody = $("<div>").attr("class", "card-body")
+        weatherInfo.append(infoBody);
+        cardRow.append(weatherInfo);
+
+        infoBody.append($("<h3>").attr("class", "card-title").text(response.name))
+
+        let dateToday= moment(response.dt, "X").format("MMMM Do YYYY h:mm a");
+        infoBody.append("<p>").attr
     })
 }
 
