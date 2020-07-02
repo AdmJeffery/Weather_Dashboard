@@ -76,10 +76,20 @@ function getCurrent (city) {
                 infoBody.append(uvDisp);
             })
             cardRow.append(textDiv);
-            get
+            getForecast(response.name)
     })
 }
 
+function getForcast(city){
+    let queryURL = "https://api.openweathermap.org/data/2.5/forecast?id=" + city + "&appid=" + apiKey;
+
+    $.ajax({
+        url : queryURL,
+        method : "GET"
+    }).then(function(response){
+        console.log (response);
+    })
+}
 
 
 $("#searchBtn").on("click", function () {
