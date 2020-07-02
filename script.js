@@ -12,6 +12,21 @@ function getCurrent (city) {
     
     }).then(function (response) {
         console.log(response)
+       // create card for current weather
+        let todayCard = $("<div>").attr("class", "card-bg-light");
+        $("#cityForecast").append(todayCard);
+        // add header
+        let todayCardHead = $("<div>").attr("class", "card-header").text("Current Weather in " + response.name);
+        todayCard.append(todayCardHead);
+
+        let cardRow = $("<div>").attr("class", "row no-gutters");
+        todayCard.append(cardRow);
+
+        let picURL = "http://openweather.org/img/wn/" + response.weather[0].icon + "@2x.png";
+
+        let todayPic = $("<div>").attr("class", "col-md-4").append($("<img>").attr("src",picURL).attr("class","card-img"));
+        cardRow.append(todayPic);
+
     })
 }
 
