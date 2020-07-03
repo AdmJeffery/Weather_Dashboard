@@ -107,7 +107,14 @@ function getForecast(city){
                 let icon = $("<img>").attr("class", "card-img-top").attr("src", "http://openweathermap.org/img/wn/" + response.list[i].weather[0].icon + "@2x.png" );
                 dayCard.append(icon);
 
+                let body = $("<div>").attr("class", "card-body");
+                dayCard.append(body);
 
+                let temp = $("<p>").attr("class", "fiveDayTemp").text("Temp:" + response.list[i].main.temp);
+                body.append(temp);
+
+                let humid = $("<p>").attr("class", "fiveDayHumid").text("Humidity" + response.list[i].main)
+                body.append(humid);
             }
         }
     })
