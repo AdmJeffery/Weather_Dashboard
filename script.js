@@ -149,4 +149,13 @@ function saveSearch(city) {
     showPreviousSearches();
 }
 
-
+function showPreviousSearches() {
+    if (locationSafe){
+        $("previousSearches").empty();
+        let buttons = $("div").attr("class", "list-group");
+        for (i=0; i<locationSafe.length; i++){
+            let citybutton = $("<a>").attr("href", "#").attr("id", "cityButton").text(locationSafe[i]);
+            
+        }
+    }
+}
