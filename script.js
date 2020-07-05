@@ -1,7 +1,7 @@
 const apiKey = "4f7869ce3d5722411e808b80d43f12ba"
 let locationSafe = [];
 
-
+let currentLocation;
 
 
 function getCurrent (city) {
@@ -154,8 +154,16 @@ function showPreviousSearches() {
         $("previousSearches").empty();
         let buttons = $("div").attr("class", "list-group");
         for (i=0; i<locationSafe.length; i++){
-            let citybutton = $("<a>").attr("href", "#").attr("id", "cityButton").text(locationSafe[i]);
-            
+            let cityButton = $("<a>").attr("href", "#").attr("id", "cityButton").text(locationSafe[i]);
+
+            if (locationSafe[i] === currentLocation){
+                cityButton.attr("class","list-group-item list-group-item-action active")
+            }
+            else {
+                cityButton.attr("class", "list-group-item list-group-itme-action");
+            }
+            btns.prepend(cityButton);
         }
+        $("previousSearches").append(buttons);
     }
 }
