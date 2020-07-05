@@ -138,8 +138,18 @@ $("#searchBtn").on("click", function () {
 
     let cityName = $("#searchInput").val().trim();
 
-    getCurrent(cityName);
+    if (cityName !== "") {
+        clearData();
+        currentLocation = cityName;
+        
+        saveSearch(cityName);
+
+        $("#searchInput").val("");
+
+        getCurrent(cityName);
     
+
+    }
 })
 
 function clearData () {
@@ -163,18 +173,19 @@ function saveSearch(city) {
 function showPreviousSearches() {
     if (locationSafe){
         $("previousSearches").empty();
-        let buttons = $("div").attr("class", "list-group");
-        for (i=0; i<locationSafe.length; i++){
+        let buttons = $("<div>").attr("class", "list-group");
+        for ( let i = 0; i < locationSafe.length; i++){
             let cityButton = $("<a>").attr("href", "#").attr("id", "cityButton").text(locationSafe[i]);
 
-            if (locationSafe[i] === currentLocation){
+            if (locationSafe[i] == currentLocation){
                 cityButton.attr("class","list-group-item list-group-item-action active")
             }
             else {
                 cityButton.attr("class", "list-group-item list-group-itme-action");
             }
-            btns.prepend(cityButton);
+            buttons.prepend(cityButton);
         }
+        
         $("previousSearches").append(buttons);
     }
 }
