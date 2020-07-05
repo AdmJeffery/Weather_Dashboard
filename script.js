@@ -110,10 +110,10 @@ function getForecast(city){
                 let body = $("<div>").attr("class", "card-body");
                 dayCard.append(body);
 
-                let temp = $("<p>").attr("class", "fiveDayTemp").text("Temp:" + response.list[i].main.temp);
+                let temp = $("<p>").attr("class", "fiveDayTemp").text("Temp: " + response.list[i].main.temp);
                 body.append(temp);
 
-                let humid = $("<p>").attr("class", "fiveDayHumid").text("Humidity" + response.list[i].main)
+                let humid = $("<p>").attr("class", "fiveDayHumid").text("Humidity: " + response.list[i].main.humidity)
                 body.append(humid);
             }
         }
@@ -127,3 +127,9 @@ $("#searchBtn").on("click", function () {
     getCurrent(cityName);
     
 })
+
+function clearData () {
+    // function meant to clear displayed weather data
+    $("#cityForecast").empty();
+};
+
