@@ -3,6 +3,17 @@ let locationSafe = [];
 
 let currentLocation;
 
+$(document).ready(function(){
+
+    // upon page load, grab searches from local storage and display the last city searched.
+    locationSafe = JSON.parse(localStorage.getItem("citysearches"));
+
+    if (locationSafe) {
+        currentLocation = locationSafe[locationSafe.length - 1];
+        showPreviousSearches();
+        getCurrent(currentLocation);
+    }
+})
 
 function getCurrent (city) {
     var queryURL ="http://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=" + apiKey
