@@ -55,13 +55,13 @@ function getCurrent (city) {
         let tempFah = Math.floor((temp-273.15) * 9/5 + 32);
             console.log(tempFah);
 
-        infoBody.append($("<p>").attr("class", "card-text").html("Temperature: " +tempFah))
+        infoBody.append($("<p>").attr("class", "card-text").html("Temperature: " +tempFah + " Fah"))
 
-        infoBody.append($("<p>").attr("class", "card-text").text("Humidity: " + response.main.humidity))
+        infoBody.append($("<p>").attr("class", "card-text").text("Humidity: " + response.main.humidity + "%"))
 
-        infoBody.append($("<p>").attr("class", "card-text").text("Wind Speed: " +response.wind.speed))
+        infoBody.append($("<p>").attr("class", "card-text").text("Wind Speed: " +response.wind.speed + "MPH"))
 
-        let uvURL = "https://api.openweathermap.org/data/2.5/uvi?appid=" + apiKey + "&lat=" + response.coord.lat + "&lon=" + response.coord.lon;
+        let uvURL = "https://api.openweathermap.org/data/2.5/uvi?appid=" + apiKey + "&lat=" + response.coord.lat + "&lon=" + response.coord.lon + "&units=inperial";
         $.ajax({
             url: uvURL,
             method : "GET"
@@ -92,7 +92,7 @@ function getCurrent (city) {
 }
 
 function getForecast(city){
-    let queryURL = "https://api.openweathermap.org/data/2.5/forecast?id=" + city + "&appid=" + apiKey;
+    let queryURL = "https://api.openweathermap.org/data/2.5/forecast?id=" + city + "&appid=" + apiKey + "&units=imperial";
 
     $.ajax({
         url : queryURL,
@@ -121,10 +121,10 @@ function getForecast(city){
                 let body = $("<div>").attr("class", "card-body");
                 dayCard.append(body);
 
-                let temp = $("<p>").attr("class", "fiveDayTemp").text("Temp: " + response.list[i].main.temp);
+                let temp = $("<p>").attr("class", "fiveDayTemp").text("Temp: " + response.list[i].main.temp + " F");
                 body.append(temp);
 
-                let humid = $("<p>").attr("class", "fiveDayHumid").text("Humidity: " + response.list[i].main.humidity)
+                let humid = $("<p>").attr("class", "fiveDayHumid").text("Humidity: " + response.list[i].main.humidity + "%")
                 body.append(humid);
             }
         }
@@ -191,6 +191,9 @@ function showPreviousSearches() {
 }
 
 $(document).on("click","#cityButton", function(){
-    cleardat ();
+    clearData ();
+    currentLocation= $(this).text();
+    showPreviousSearches();
+    getCurrent(currentLocation);
 
 })
