@@ -122,6 +122,9 @@ function getForecast(city){
 
 
 $("#searchBtn").on("click", function () {
+
+    event.preventDefault();
+
     let cityName = $("#searchInput").val().trim();
 
     getCurrent(cityName);
@@ -132,4 +135,18 @@ function clearData () {
     // function meant to clear displayed weather data
     $("#cityForecast").empty();
 };
+
+function saveSearch(city) {
+    //adds to locationSafe array and initializes local storage
+    if (locationSafe === null) {
+        locationSafe = [city];
+    }
+    else if (locationSafe.indexOf(city)===-1){
+        locationSafe.push(city);
+    }
+
+    localStorage.setItem("citysearches", JSON.stringify(locationSafe));
+    showPreviousSearches();
+}
+
 
