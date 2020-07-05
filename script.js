@@ -16,7 +16,7 @@ $(document).ready(function(){
 })
 
 function getCurrent (city) {
-    var queryURL ="http://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=" + apiKey
+    var queryURL ="https://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=" + apiKey
     $.ajax({
         url : queryURL,
         method : "GET"
@@ -33,7 +33,7 @@ function getCurrent (city) {
         let cardRow = $("<div>").attr("class", "row no-gutters");
         todayCard.append(cardRow);
 
-        let picURL = "http://openweathermap.org/img/wn/" + response.weather[0].icon + "@2x.png";
+        let picURL = "https://openweathermap.org/img/wn/" + response.weather[0].icon + "@2x.png";
 
         let todayPic = $("<div>").attr("class", "col-md-4").append($("<img>").attr("src",picURL).attr("class","card-img"));
         cardRow.append(todayPic);
@@ -100,7 +100,7 @@ function getForecast(city){
     }).then(function(response){
         
         //make new row for 5 day forecast cards.
-        let fiveDayRow = $("<div>").attr("class", "fiveDayForecast");
+        let fiveDayRow = $("<div>").attr("class", "forecast");
         $("#cityForecast").append(fiveDayRow);
 
         for (i=0; i<response.list.length; i++) {
