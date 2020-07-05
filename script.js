@@ -22,7 +22,7 @@ function getCurrent (city) {
         method : "GET"
     
     }).then(function (response) {
-        console.log(response)
+        
        // create card for current weather
         let todayCard = $("<div>").attr("class", "card-bg-light");
         $("#cityForecast").append(todayCard);
@@ -98,7 +98,7 @@ function getForecast(city){
         url : queryURL,
         method : "GET"
     }).then(function(response){
-        console.log (response);
+        
         //make new row for 5 day forecast cards.
         let fiveDayRow = $("<div>").attr("class", "fiveDayForecast");
         $("#cityForecast").append(fiveDayRow);
@@ -172,7 +172,7 @@ function saveSearch(city) {
 
 function showPreviousSearches() {
     if (locationSafe){
-        $("previousSearches").empty();
+        $("#previousSearches").empty();
         let buttons = $("<div>").attr("class", "list-group");
         for ( let i = 0; i < locationSafe.length; i++){
             let cityButton = $("<a>").attr("href", "#").attr("id", "cityButton").text(locationSafe[i]);
@@ -181,11 +181,16 @@ function showPreviousSearches() {
                 cityButton.attr("class","list-group-item list-group-item-action active")
             }
             else {
-                cityButton.attr("class", "list-group-item list-group-itme-action");
+                cityButton.attr("class", "list-group-item list-group-item-action");
             }
             buttons.prepend(cityButton);
         }
         
-        $("previousSearches").append(buttons);
+        $("#previousSearches").append(buttons);
     }
 }
+
+$(document).on("click","#cityButton", function(){
+    cleardat ();
+
+})
