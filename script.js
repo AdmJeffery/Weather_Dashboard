@@ -55,7 +55,7 @@ function getCurrent (city) {
         let tempFah = Math.floor((temp-273.15) * 9/5 + 32);
             console.log(tempFah);
 
-        infoBody.append($("<p>").attr("class", "card-text").html("Temperature: " +tempFah + " Fah"))
+        infoBody.append($("<p>").attr("class", "card-text").html("Temperature: " +tempFah + " F"))
 
         infoBody.append($("<p>").attr("class", "card-text").text("Humidity: " + response.main.humidity + "%"))
 
