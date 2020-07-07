@@ -6,12 +6,12 @@ Welcome to my Weather Dashboard! The purpose of this program is to allow the use
 
 Using the Weather Dashboard is simple. Type in the city you wish to search and click the "search" button. The weather information will appear on the right. A button will appear underneath the search bar that will be labeled as the city you have just searched. You can click this button if you wish to review weather information from a previous search.
 
-![Weather_Dashboard](Assets/Weather_Dashboard.png)
+[!Weather_Dashboard](Assets/Weather_Dashboard.png)
 ### Requirements
 
 Here is the acceptance criteria for this particular project.
 
-![Acceptance_Criteria](Assets/Acceptance.png)
+[!Acceptance_Criteria](Assets/Acceptance.png)
 
 ### What I learned
 
