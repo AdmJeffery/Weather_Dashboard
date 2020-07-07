@@ -17,4 +17,7 @@ Here is the acceptance criteria for this particular project.
 
 This project allowed me to experiment more with Bootstrap. While I don't see myself as proficient with it yet, I am far more comfortable using it than I was before, particularly when it comes to cards. I also learned how to use ajax requests properly and exyract information that I need from an api object.
 
-In the future, I may change the design. Currently, i was only trying to emulate the example given. It would be a fun challenge to make it unique while keeping the same functionality.
+In the future, I may change the design. Currently, i was only trying to emulate the example given. It would be a fun challenge to change and experiment with the design while keeping the same functionality, such as:
+* Incorporating the previous search buttons into a dropdown menu.
+* Changing the color scheme
+* etc.
