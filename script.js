@@ -50,10 +50,10 @@ function getCurrent (city) {
             infoBody.append($("<p>").attr("class", "card-text").append($("<small>").attr("class", "text-muted").text(dateToday)))
 
         let temp = Number(response.main.temp)
-            console.log(temp)
+            
 
         let tempFah = Math.floor((temp-273.15) * 9/5 + 32);
-            console.log(tempFah);
+            
 
         infoBody.append($("<p>").attr("class", "card-text").html("Temperature: " +tempFah + " F"))
 
